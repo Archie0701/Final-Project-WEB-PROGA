@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/aboutStyle.css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
@@ -16,7 +17,10 @@
     <script src="assets/ytplayer/index.js "></script>
     <script src="assets/dropdown/js/navbar-dropdown.js "></script>
     <script src="assets/mbr-switch-arrow/mbr-switch-arrow.js "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js"></script>
+    <link rel="stylesheet" href="./css/contacts.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script type = "text/javascript" src = "js/vue.js"></script>
     <title>Home page </title>
 </head>
 <body class="contacts">
@@ -31,7 +35,7 @@
                         </a>
                     </span>
                     <span class="navbar-caption-wrap"><a class="navbar-caption text-secondary text-primary display-7"
-                            href="index.html">Logo</a></span>
+                            href="./homePage.html">Music life</a></span>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <div class="hamburger">
@@ -71,3 +75,116 @@
         </nav>
 
     </section>
+    <body>
+        <style>
+           #databinding{
+              padding: 20px 15px 15px 15px;
+              margin: 0 0 25px 0;
+              width: auto;
+           }
+           span, option, input {
+              font-size:20px;
+           }
+           .Table{
+              display: table;
+              width:80%;
+           }
+           .Title{
+              display: table-caption;
+              text-align: center;
+              font-weight: bold;
+              font-size: larger;
+           }
+           .Heading{
+              display: table-row;
+              font-weight: bold;
+              text-align: center;
+           }
+           .Row{
+              display: table-row;
+           }
+           .Cell{
+              display: table-cell;
+              border: solid;
+              border-width: thin;
+              padding-left: 5px;
+              padding-right: 5px;
+              width:30%;
+           }
+        </style>
+        
+        <div id = "databinding" style = "">
+           <h1>Customer Details</h1>
+           <span>First Name</span>
+           <input type = "text" placeholder = "Enter First Name" v-model = "fname"/>
+           <span>Last Name</span>
+           <input type = "text" placeholder = "Enter Last Name" v-model = "lname"/>
+           <span>Address</span>
+           <input type = "text" placeholder = "Enter Address" v-model = "addr"/>
+           <button v-on:click = "showdata" v-bind:style = "styleobj">Add</button>
+           <br/>
+           <br/>
+           <customercomponent
+              v-for = "(item, index) in custdet"
+              v-bind:item = "item"
+              v-bind:index = "index"
+              v-bind:itr = "item"
+              v-bind:key = "item.fname"
+              v-on:removeelement = "custdet.splice(index, 1)">
+           </customercomponent>
+        </div>
+        
+        <script type = "text/javascript">
+           Vue.component('customercomponent',{
+              template : '<div class = "Table"><div class = "Row"  v-bind:style = "styleobj"><div class = "Cell"><p>{{itr.fname}}</p></div><div class = "Cell"><p>{{itr.lname}}</p></div><div class = "Cell"><p>{{itr.addr}}</p></div><div class = "Cell"><p><button v-on:click = "$emit(\'removeelement\')">X</button></p></div></div></div>',
+              props: ['itr', 'index'],
+              data: function() {
+                 return {
+                    styleobj : {
+                       backgroundColor:this.getcolor(),
+                       fontSize : 20
+                    }
+                 }
+              },
+              methods:{
+                 getcolor : function() {
+                    if (this.index % 2) {
+                       return "#FFE633";
+                    } else {
+                       return "#D4CA87";
+                    }
+                 }
+              }
+           });
+           var vm = new Vue({
+              el: '#databinding',
+              data: {
+                 fname:'',
+                 lname:'',
+                 addr : '',
+                 custdet:[],
+                 styleobj: {
+                    backgroundColor: '#2196F3!important',
+                    cursor: 'pointer',
+                    padding: '8px 16px',
+                    verticalAlign: 'middle',
+                 }
+              },
+              methods :{
+                 showdata : function() {
+                    this.custdet.push({
+                       fname: this.fname,
+                       lname: this.lname,
+                       addr : this.addr
+                    });
+                    this.fname = "";
+                    this.lname = "";
+                    this.addr = "";
+                 }
+              }
+           });
+        </script>
+     </body>
+  </html>
+</body>
+</html>

@@ -19,7 +19,7 @@ body{
     
 }
 .contacts{
-    background: url("../img/fon4.jpg");
+    background: url("../img/fon6.jpg");
 
 }
 .etnic{
@@ -34,6 +34,15 @@ body{
 .vocal{
     background: url("../img/fon6.jpg");
 }
+.guitar{
+    background: url("../img/fon1.jpg");
+}
+.violin{
+    background: url("../img/fon2.jpg");
+}
+.drum{
+    background: url("../img/fon3.jpg");
+}
 html{
     scroll-behavior: smooth;
 }
@@ -45,7 +54,8 @@ html{
     height: 100%;
 }
 
-#start{
+
+#piano,#start,#vocal,#etnic,#drum,#violin,#guitara{
     justify-content: center;
     text-align: center;
     display: flex;
@@ -63,21 +73,30 @@ html{
 }
 
 .uppertext{
+    color: black;
 
 }
 
-#piano{
+#piano,#vocal,#ethic,#drum,#violin,#guitara{
     min-height: 800px;
     border: 1 solid black;
     
 }
-#vocal{
-    min-height: 800px;
-    border: 1 solid black;
-    
+#piano img{
+    margin-left: 80%;
 }
-#etnic{
-    min-height: 800px;
-    border: 1 solid black;
-   
+
+#vocal img{
+    margin-left: 80%;
 }
+
+#drum img{
+    margin-left: 80%;
+}
+#violin img{
+    margin-left: 80%;
+}
+#guitara img{
+    margin-left:80%;
+}
+
